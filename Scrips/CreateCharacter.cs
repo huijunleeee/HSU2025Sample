@@ -1,9 +1,9 @@
-using UnityEngine;
-
 /*
  * File :   CreateCharacter.cs
  * Desc :   캐릭터 생성
  */
+
+using UnityEngine;
 
 public class CreateCharacter
 {
@@ -13,20 +13,29 @@ public class CreateCharacter
         switch (job)
         {
             case "Doctor":
-                CharacterData doctor = new CharacterData("Doctor");
                 if (!farmed)
-                    doctor.isAlive = false;
-                return doctor;
+                    return null;
+                else {
+                    CharacterData doctor = new CharacterData("Doctor");
+                    return doctor; 
+                }
+                    
             case "Engineer":
-                CharacterData engineer = new CharacterData("Engineer");
                 if (!farmed)
-                    engineer.isAlive = false;
-                return engineer;
+                    return null;
+                else{
+                    CharacterData engineer = new CharacterData("Engineer");
+                    return engineer;
+                }
+                
             case "Guard":
-                CharacterData guard = new CharacterData("Guard");
                 if (!farmed)
-                    guard.isAlive = false;
-                return guard;
+                    return null;
+                else{
+                    CharacterData guard = new CharacterData("Guard");
+                    return guard;
+                }
+                
             case "Player":
                 CharacterData player = new CharacterData("Player");
                 return player;

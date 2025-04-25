@@ -1,11 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-
 /*
  * File :   DistributeUIController.cs
  * Desc :   배급 여부 선택 및 다음 날로 넘어가는 부분
  */
+
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+
 
 public class DistributeUIController : MonoBehaviour
 {

@@ -1,11 +1,11 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-
 /*
  * File :   FarmingUIController.cs
  * Desc :   파밍 여부에 따른 캐릭터 생성 부분
  */
+
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class FarmingUIController : MonoBehaviour
 {

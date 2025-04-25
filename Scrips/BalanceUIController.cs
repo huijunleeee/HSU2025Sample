@@ -1,11 +1,11 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
 /*
  * File :   BuffAndNerf.cs
  * Desc :   버프와 너프 선택 및 남은 포인트 표시
  */
+
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class BalanceUIController : MonoBehaviour
 {

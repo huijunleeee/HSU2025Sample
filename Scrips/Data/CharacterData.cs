@@ -1,13 +1,13 @@
-using UnityEngine;
-
 /*
  * File :   CharacterData.cs
  * Desc :   캐릭터 상태 데이터
  */
 
+using UnityEngine;
+
 public class CharacterData
 {
-    // 캐릭터 기본 정보 및 수치(정수값 중 affection은 0~500, 나머지 0~100)
+    // 캐릭터 기본 정보 및 수치(정수값 0~100)
     public string job;
     public int food;
     public int water;
@@ -15,7 +15,7 @@ public class CharacterData
     public int affection;  
     public bool isSick;
     public bool isAlive;
-    //증가 및 감소 기본 단위
+    //증가 및 감소 기본 단위(증가율 감소율 조정을 편하게 하기 위해)
     public int foodGainUnit;
     public int foodLossUnit;
     public int waterGainUnit;
@@ -38,6 +38,8 @@ public class CharacterData
     public bool goodLeader;
     //남은 전기량 (0이 될 시 산소 시스템 중지로 전멸)
     public int electricity;
+    //사인
+    public string deathReason;
 
     public CharacterData(string j) {
         // 상태 초기값
@@ -49,16 +51,17 @@ public class CharacterData
         isSick = false;
         isAlive = true;
 
+        deathReason = " ";
         switch (j)
         {
             case "Doctor":
-                affection = 250;
+                affection = 50;
                 break;
             case "Engineer":
-                affection = 250;
+                affection = 50;
                 break;
             case "Guard":
-                affection = 250;
+                affection = 50;
                 break;
             case "Player":
                 foodGainUnit = foodLossUnit = waterGainUnit = waterLossUnit = electricityGainUnit = electricityLossUnit = mentalGainUnit = mentalLossUnit = affectionGainUnit = affectionLossUnit = 5;

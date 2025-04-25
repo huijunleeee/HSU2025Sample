@@ -1,9 +1,9 @@
-using UnityEngine;
-
 /*
  * File :   BuffAndNerf.cs
  * Desc :   버프와 너프 선택에 따른 포인트 값 반환 및 수치 조정
  */
+
+using UnityEngine;
 
 public class BuffAndNerf
 {
@@ -74,17 +74,21 @@ public class BuffAndNerf
             case 1: // 심리학자, 호감도 감소율 감소
                 GameManager.Instance.player.affectionLossUnit -= 2;
                 break;
-            case 2: // 의료진
+            case 2: // 의료진, 다른 아이템으로 약 제조 가능(아이템 구현 이후 작업)
                 break;
             case 3: // 연구소장, 호감도가 높은 상태로 시작
-                GameManager.Instance.engineer.affection += 150;
-                GameManager.Instance.doctor.affection += 150;
-                GameManager.Instance.guard.affection += 150;
+                foreach (CharacterData character in GameManager.Instance.characterList)
+                {
+                    if (character != null && character.job != "Player")
+                    {
+                        character.affection += 30;
+                    }
+                }
                 break;
             case 4: // 요리사, 식량 배급에 따른 만족도 증가
                 GameManager.Instance.player.foodGainUnit += 2;
                 break;
-            case 5: // 직감적 판단
+            case 5: // 직감적 판단(이벤트 구현 이후 작업)
                 break;
             case 6: // 시설 기술자, 시설물 고장 확률 감소
                 GameManager.Instance.player.facilityFailProb -= 0.1f;
@@ -96,10 +100,10 @@ public class BuffAndNerf
                 GameManager.Instance.player.affectionGainUnit += 2;
                 GameManager.Instance.player.affectionLossUnit -= 2;
                 break;
-            case 9: // 위기 대응 전문가, 아사
+            case 9: // 위기 대응 전문가, 아사로 인한 죽음을 한 번 견딤
                 GameManager.Instance.player.survivalPro = true;
                 break;
-            case 10: // 신속한 반응
+            case 10: // 신속한 반응, 탐사 일수 1일 감소
                 GameManager.Instance.player.missionDays -= 1;
                 break;
             default:
@@ -121,7 +125,7 @@ public class BuffAndNerf
             case 3: // 대식가, 음식 소모량 증가
                 GameManager.Instance.player.foodLossUnit += 2;
                 break;
-            case 4: // 불면증 ,정신력을 더 빠르게 감소(니코틴보다 더 많이)
+            case 4: // 불면증 ,정신력을 더 빠르게 감소
                 GameManager.Instance.player.mentalLossUnit += 3;
                 break;
             case 5: // 단기 기억상실, 지정된 명령을 수행하지 않을 확률
@@ -130,16 +134,16 @@ public class BuffAndNerf
             case 6: // 손재주 부족, 수리 성공률 감소
                 GameManager.Instance.player.repairProb -= 0.1f;
                 break;
-            case 7: // 리더십 부족, NPC들의 호감도가 천천히 감소(매일 일정량)
+            case 7: // 리더십 부족, NPC들의 호감도가 천천히 감소
                 GameManager.Instance.player.goodLeader = false;
                 break;
-            case 8: // 과민 반응, 정신 이상도가 낮을 경우 랜덤한 아이템 파괴
+            case 8: // 과민 반응, 정신 이상도가 낮을 경우 랜덤한 아이템 파괴(아이템 구현 이후 작업)
                 break;
             case 9: // 고립된 성격, 호감도 증가량 감소 및 감소량 증가
                 GameManager.Instance.player.affectionGainUnit -= 2;
                 GameManager.Instance.player.affectionLossUnit += 2;
                 break;
-            case 10: // 길치
+            case 10: // 길치(탐사 구현 이후 작업)
                 break;
             default:
                 break;
