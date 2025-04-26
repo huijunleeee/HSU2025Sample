@@ -23,6 +23,8 @@ public class NextDay
             else
                 HandleNPCTurn(character, goodLeader);
 
+            ClampStats(character);
+
             // 다음 날로 증가
             if (character.job == "Player")
                 GameManager.Instance.day++;
@@ -45,7 +47,7 @@ public class NextDay
         TryDeath(cd, cd.food <= 0, "아사");
         TryDeath(cd, cd.water <= 0, "갈사");
 
-        float dp = GameManager.Instance.player.deathProb;
+        float dp = GameManager.Instance.player.deathProb; //기본 0.5f
 
         // 정신 이상도에 따른 확률형 사망
         if (cd.mental <= 0) TryChanceDeath(cd, dp, "자살");
@@ -126,4 +128,14 @@ public class NextDay
             c.deathReason = reason;
         }
     }
+    // 스탯 0~100 유지
+    void ClampStats(CharacterData c)
+    {
+        c.food = Mathf.Clamp(c.food, 0, 100);
+        c.water = Mathf.Clamp(c.water, 0, 100);
+        c.mental = Mathf.Clamp(c.mental, 0, 100);
+        c.affection = Mathf.Clamp(c.affection, 0, 100);
+        c.electricity = Mathf.Clamp(c.electricity, 0, 100);
+    }
+
 }

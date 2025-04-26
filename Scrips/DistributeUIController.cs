@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class DistributeUIController : MonoBehaviour
@@ -83,6 +84,7 @@ public class DistributeUIController : MonoBehaviour
             }
 
             Debug.Log($"[Day]: {GameManager.Instance.day}");
+            SceneManager.LoadScene("AffectionScene");
         });
     }
 }

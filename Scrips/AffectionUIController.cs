@@ -1,4 +1,7 @@
-
+/*
+ * File :   AffectionUIController.cs
+ * Desc :   호감도 이벤트 테스트
+ */
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -19,11 +22,11 @@ public class AffectionUIController : MonoBehaviour
 
     void Awake()
     {
-        // 좋은/나쁜 토글 상호 배타
+        // 선택지 중 하나만 선택
         goodToggle.onValueChanged.AddListener(isOn => { if (isOn) badToggle.isOn = false; });
         badToggle.onValueChanged.AddListener(isOn => { if (isOn) goodToggle.isOn = false; });
 
-        // 캐릭터 토글 상호 배타
+        // 직업 중 하나만 선택
         engineerToggle.onValueChanged.AddListener(isOn => { if (isOn) { guardToggle.isOn = false; doctorToggle.isOn = false; } });
         guardToggle.onValueChanged.AddListener(isOn => { if (isOn) { engineerToggle.isOn = false; doctorToggle.isOn = false; } });
         doctorToggle.onValueChanged.AddListener(isOn => { if (isOn) { engineerToggle.isOn = false; guardToggle.isOn = false; } });
@@ -44,7 +47,7 @@ public class AffectionUIController : MonoBehaviour
             return;
         }
 
-        //좋은/나쁜 선택에 따라 호감도 조정
+        //좋은/나쁜 선택지에 따라 호감도 조정
         if (goodToggle.isOn)
         {
             _affection.GainAffection(target, 4);
