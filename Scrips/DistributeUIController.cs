@@ -46,35 +46,40 @@ public class DistributeUIController : MonoBehaviour
 
             foreach (CharacterData cd in GameManager.Instance.characterList)
             {
-                if (cd != null)
-                {
-                    Debug.Log(
-                        $"Job: {cd.job}\n" +
-                        $"Food: {cd.food}\n" +
-                        $"Water: {cd.water}\n" +
-                        $"Electricity: {cd.electricity}\n" +
-                        $"Mental: {cd.mental}\n" +
-                        $"Affection: {cd.affection}\n" +
-                        $"Is Sick: {cd.isSick}\n" +
-                        $"Is Alive: {cd.isAlive}\n" +
-                        $"Food Gain Unit: {cd.foodGainUnit}\n" +
-                        $"Food Loss Unit: {cd.foodLossUnit}\n" +
-                        $"Water Gain Unit: {cd.waterGainUnit}\n" +
-                        $"Water Loss Unit: {cd.waterLossUnit}\n" +
-                        $"Electricity Gain Unit: {cd.electricityGainUnit}\n" +
-                        $"Electricity Loss Unit: {cd.electricityLossUnit}\n" +
-                        $"Mental Gain Unit: {cd.mentalGainUnit}\n" +
-                        $"Mental Loss Unit: {cd.mentalLossUnit}\n" +
-                        $"Affection Gain Unit: {cd.affectionGainUnit}\n" +
-                        $"Affection Loss Unit: {cd.affectionLossUnit}\n" +
-                        $"Facility Fail Probability: {cd.facilityFailProb}\n" +
-                        $"Random Acting Probability: {cd.randomActingProb}\n" +
-                        $"Repair Probability: {cd.repairProb}\n" +
-                        $"Mission Days: {cd.missionDays}\n" +
-                        $"Survival Pro: {cd.survivalPro}\n" +
-                        $"Good Leader: {cd.goodLeader}\n"
-                    );
-                }
+                if (cd == null)
+                    continue;
+
+                Debug.Log(
+                    $"Job: {cd.job}\n" +
+                    $"Food: {cd.food}\n" +
+                    $"Water: {cd.water}\n" +
+                    $"Electricity: {cd.electricity}\n" +
+                    $"Mental: {cd.mental}\n" +
+                    $"Affection: {cd.affection}\n" +
+                    $"Is Sick: {cd.isSick}\n" +
+                    $"Is Alive: {cd.isAlive}\n" +
+                    $"Death Reason: {cd.deathReason}\n" +
+                    // 증가·감소 단위
+                    $"Food Gain Unit: {cd.foodGainUnit}\n" +
+                    $"Food Loss Unit: {cd.foodLossUnit}\n" +
+                    $"Water Gain Unit: {cd.waterGainUnit}\n" +
+                    $"Water Loss Unit: {cd.waterLossUnit}\n" +
+                    $"Electricity Gain Unit: {cd.electricityGainUnit}\n" +
+                    $"Electricity Loss Unit: {cd.electricityLossUnit}\n" +
+                    $"Mental Gain Unit: {cd.mentalGainUnit}\n" +
+                    $"Mental Loss Unit: {cd.mentalLossUnit}\n" +
+                    $"Affection Gain Unit: {cd.affectionGainUnit}\n" +
+                    $"Affection Loss Unit: {cd.affectionLossUnit}\n" +
+                    // 확률 관련
+                    $"Facility Fail Prob: {cd.facilityFailProb}\n" +
+                    $"Random Acting Prob: {cd.randomActingProb}\n" +
+                    $"Repair Prob: {cd.repairProb}\n" +
+                    $"Death Prob: {cd.deathProb}\n" +
+                    // 그 외
+                    $"Mission Days: {cd.missionDays}\n" +
+                    $"Survival Pro: {cd.survivalPro}\n" +
+                    $"Good Leader: {cd.goodLeader}"
+                );
             }
 
             Debug.Log($"[Day]: {GameManager.Instance.day}");

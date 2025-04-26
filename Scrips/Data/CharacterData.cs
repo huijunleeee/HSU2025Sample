@@ -30,6 +30,7 @@ public class CharacterData
     public float facilityFailProb;
     public float randomActingProb;
     public float repairProb;
+    public float deathProb;
     //탐사 일수
     public int missionDays;
     //죽는 버틸 수 있는가
@@ -69,6 +70,7 @@ public class CharacterData
                 facilityFailProb = 0.2f;
                 randomActingProb = 0f;
                 repairProb = 0.5f;
+                deathProb = 0.5f;
                 missionDays = 3;
                 survivalPro = false;
                 goodLeader = true;
