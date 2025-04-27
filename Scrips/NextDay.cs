@@ -39,7 +39,7 @@ public class NextDay
 
     void HandleNPCTurn(CharacterData cd, bool goodLeader)
     {
-        // 애정도 감소 (리더쉽 부족 특성)
+        // 호감도 감소 (리더쉽 부족 특성)
         if (!goodLeader)
             _affection.LoseAffection(cd, 1);
 

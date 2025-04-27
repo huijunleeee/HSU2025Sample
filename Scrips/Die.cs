@@ -32,7 +32,10 @@ public class Die
                 _ => "알 수 없음"
             };
 
-            GameManager.Instance.characterList.Remove(character);
+            int idx = GameManager.Instance.characterList.IndexOf(character);
+            if (idx >= 0)
+                GameManager.Instance.characterList[idx] = null;
+
             message += $"{jobName}: {character.deathReason}\n";
         }
 
