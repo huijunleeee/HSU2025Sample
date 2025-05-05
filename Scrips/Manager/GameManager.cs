@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     public CharacterData doctor;
     public CharacterData engineer;
     public CharacterData guard;
+
     public int day = 1;
 
     public List<CharacterData> characterList = new List<CharacterData>();
+
+    public ItemData itemData = new ItemData();
 
     void Awake()
     {

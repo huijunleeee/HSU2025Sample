@@ -12,9 +12,10 @@ public class CharacterData
     public int food;
     public int water;
     public int mental;
-    public int affection;  
+    public int health;
     public bool isSick;
     public bool isAlive;
+    public int affection;
     //증가 및 감소 기본 단위(증가율 감소율 조정을 편하게 하기 위해)
     public int foodGainUnit;
     public int foodLossUnit;
@@ -31,12 +32,17 @@ public class CharacterData
     public float randomActingProb;
     public float repairProb;
     public float deathProb;
+    public float sickProb;
     //탐사 일수
     public int missionDays;
     //죽는 버틸 수 있는가
     public bool survivalPro;
     //리더쉽 여부 (false일 시 매일 호감도 감소)
     public bool goodLeader;
+    //약사 (true일 시 약 만들기 가능)
+    public bool pharmacist;
+    // 과민반응 (true일 시 멘탈이 낮으면 랜덤 아이템 파괴)
+    public bool overreaction;
     //남은 전기량 (0이 될 시 산소 시스템 중지로 전멸)
     public int electricity;
     //사인
@@ -47,6 +53,7 @@ public class CharacterData
         job = j;
         food = 100;
         water = 100;
+        health = 100;
 
         mental = 100;
         isSick = false;
@@ -71,9 +78,12 @@ public class CharacterData
                 randomActingProb = 0f;
                 repairProb = 0.5f;
                 deathProb = 0.5f;
+                sickProb = 1f;
                 missionDays = 3;
                 survivalPro = false;
                 goodLeader = true;
+                pharmacist = false;
+                overreaction = false;
                 break;
         }
     }

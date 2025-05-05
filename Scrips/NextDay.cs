@@ -9,6 +9,7 @@ public class NextDay
 {
     private Die _die = new Die();
     private Affection _affection = new Affection();
+    private UsingItem usingItem = new UsingItem();
 
     public void RunNextDay(CharacterData character, bool goodLeader)
     {
@@ -43,6 +44,15 @@ public class NextDay
         if (!goodLeader)
             _affection.LoseAffection(cd, 1);
 
+        // 음식, 물 수치 일정 이하 시, 건강 수치 감소
+        if (cd.food <= 30 && cd.water <= 30)
+        {
+            cd.health -= 25;
+        }else if (cd.food <= 30 ||  cd.water <= 30)
+        {
+            cd.health -= 10;
+        }
+
         // 아사와 갈사
         TryDeath(cd, cd.food <= 0, "아사");
         TryDeath(cd, cd.water <= 0, "갈사");
@@ -56,19 +66,55 @@ public class NextDay
         // 호감도에 따른 확률형 사망
         if (cd.affection <= 0) TryChanceDeath(cd, dp, "나를 피해 떠나감");
         else if (cd.affection <= 20) TryChanceDeath(cd, dp / 5, "나를 피해 떠나감");
+        
+        // 발병 여부에 따른 확률형 사망
+        if (cd.isSick) TryChanceDeath(cd, dp, "병사");
+
+        // 건강 수치에 따른 확률형 발병
+        float sp = GameManager.Instance.player.sickProb; // 기본 1f
+
+        if (cd.health <= 0) TryChanceSick(cd, sp);
+        else if (cd.health <= 30) TryChanceSick(cd, sp / 3);
+
     }
 
     void HandlePlayerTurn(CharacterData pl)
     {
+        // 음식, 물 수치 일정 이하 시, 건강 수치 감소
+        if (pl.food <= 30 && pl.water <= 30)
+        {
+            pl.health -= 25;
+        }
+        else if (pl.food <= 30 || pl.water <= 30)
+        {
+            pl.health -= 10;
+        }
+
         // 아사와 갈사(위기 대응 전문가 적용)
         TrySurviveOrDeath(pl, pl.food <= 0, "아사", 10);
         TrySurviveOrDeath(pl, pl.water <= 0, "갈사", 10);
 
-        float dp = GameManager.Instance.player.deathProb;
+        float dp = GameManager.Instance.player.deathProb; //0.5f
 
-        // 정신 이상도에 따른 확률형 사망
-        if (pl.mental <= 0) TryChanceDeath(pl, dp, "자살");
-        else if (pl.mental <= 30) TryChanceDeath(pl, dp / 5, "자살");
+        // 정신 이상도에 따른 확률형 사망 및 과민반응
+        if (pl.mental <= 0)
+        {
+            TryChanceDeath(pl, dp, "자살");
+            if (GameManager.Instance.player.overreaction) usingItem.DestroyItem(2);
+        }
+        else if (pl.mental <= 30)
+        {
+            TryChanceDeath(pl, dp / 5, "자살");
+            if (GameManager.Instance.player.overreaction) usingItem.DestroyItem(1);
+        }
+        // 발병 여부에 따른 확률형 사망
+        if (pl.isSick) TryChanceDeath(pl, dp, "병사");
+
+        // 건강 수치에 따른 확률형 발병
+        float sp = GameManager.Instance.player.sickProb; // 기본 1f
+
+        if (pl.health <= 0) TryChanceSick(pl, sp);
+        else if (pl.health <= 30) TryChanceSick(pl, sp / 3);
 
         // 전력 소모 및 질식사(전원 사망)
         int eLoss = GameManager.Instance.player.electricityLossUnit;
@@ -99,6 +145,14 @@ public class NextDay
         {
             c.isAlive = false;
             c.deathReason = reason;
+        }
+    }
+
+    void TryChanceSick(CharacterData c, float chance)
+    {
+        if (Random.value < chance)
+        {
+            c.isSick = true;
         }
     }
 
@@ -136,6 +190,7 @@ public class NextDay
         c.mental = Mathf.Clamp(c.mental, 0, 100);
         c.affection = Mathf.Clamp(c.affection, 0, 100);
         c.electricity = Mathf.Clamp(c.electricity, 0, 100);
+        c.health = Mathf.Clamp(c.health, 0, 100);
     }
 
 }

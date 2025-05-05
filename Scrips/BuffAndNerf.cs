@@ -13,7 +13,7 @@ public class BuffAndNerf
         {
             case 1: // 심리학자
                 return 4;
-            case 2: // 의료진
+            case 2: // 약사
                 return 6;
             case 3: // 연구소장
                 return 4;
@@ -74,7 +74,8 @@ public class BuffAndNerf
             case 1: // 심리학자, 호감도 감소율 감소
                 GameManager.Instance.player.affectionLossUnit -= 2;
                 break;
-            case 2: // 의료진, 다른 아이템으로 약 제조 가능(아이템 구현 이후 작업)
+            case 2: // 약사, 음식과 물로 약 제조 가능
+                GameManager.Instance.player.pharmacist = true;
                 break;
             case 3: // 연구소장, 호감도가 높은 상태로 시작
                 foreach (CharacterData character in GameManager.Instance.characterList)
@@ -139,6 +140,7 @@ public class BuffAndNerf
                 GameManager.Instance.player.goodLeader = false;
                 break;
             case 8: // 과민 반응, 정신 이상도가 낮을 경우 랜덤한 아이템 파괴(아이템 구현 이후 작업)
+                GameManager.Instance.player.overreaction = true;
                 break;
             case 9: // 고립된 성격, 호감도 증가량 감소 및 감소량 증가
                 GameManager.Instance.player.affectionGainUnit -= 1;

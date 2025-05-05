@@ -1153,6 +1153,7 @@ MonoBehaviour:
   pointText: {fileID: 1675075050}
   fixButton: {fileID: 1186028649}
   point: 10
+  test: {fileID: 0}
 --- !u!1 &248142498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,8 +3891,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: 46.3838, y: -0.5}
+  m_SizeDelta: {x: 46.7676, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1210965319
 MonoBehaviour:
@@ -3926,7 +3927,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC758\uB8CC\uC9C4(\uAD6C\uD604x)"
+  m_Text: "\uC57D\uC0AC, \uC74C\uC2DD\uACFC \uBB3C\uB85C \uC57D \uC81C\uC870 \uAC00\uB2A5\n"
 --- !u!222 &1210965320
 CanvasRenderer:
   m_ObjectHideFlags: 0

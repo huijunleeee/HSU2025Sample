@@ -14,6 +14,7 @@ public class Distribute
             if (distributed)
             {
                 character.water += 8 * GameManager.Instance.player.waterGainUnit; //기본값 40
+                GameManager.Instance.itemData.waterN -= 0.25f;
             }
             else if (character.job != "Player")
             {
@@ -46,6 +47,7 @@ public class Distribute
                     default:
                         break;
                 }
+                GameManager.Instance.itemData.foodN -= 0.25f;
             }
             else if (character.job != "Player")
             {
